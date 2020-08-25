@@ -95,23 +95,25 @@ function draw()
 
     player.collide(invisibleGround);
     spawnBananas();
-    spawnObstacles();
+    spawnObstacles();      
     if(BananaGroup.isTouching(player))
     {
-       switch(score) {  
-        case 10: player.scale=0.12;
-                break;
-        case 20: player.scale=0.14;
-                break;
+      BananaGroup.destroyEach();
+      score = score + 2;        
+    switch(score)
+    { 
+      case 10: player.scale=0.12;
+        break;
+      case 20: player.scale=0.14;
+        break;
         case 30: player.scale=0.16;
-                break;
+        break;
         case 40: player.scale=0.18;
-                break;
-        default: break;       
-        
-      }
-      score=score+1;
+        break;
+        default: break; }
 
+      }
+  
     }
     if(StonesGroup.isTouching(player))
     {
@@ -122,7 +124,7 @@ function draw()
         gameState=END;
       }
 
-    }
+  
   }
   else if(gameState === END) {
     score=0; 
@@ -140,9 +142,10 @@ function draw()
   }
   if(mousePressedOver(restart)) {
     reset();
-  }
+  }   
   drawSprites();
 }
+
 
 function spawnBananas() {
   //write code here to spawn the Bananas
